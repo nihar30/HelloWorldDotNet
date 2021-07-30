@@ -13,6 +13,10 @@ jobs:
        { curl https://api.github.com/repos/mangeshpa/HelloWorldDotNet/commits | jq '.[] | {Commit_id: .sha, Commit_Date: .commit.author.date, Commit_Author: .commit.author.name}'\ &&
        curl -X GET https://api.github.com/repos/mangeshpa/HelloWorldDotNet | jq -r '{Reponame: .name, Branch: .default_branch}';} >> "./output.json"
        
+       echo "TAG_NAME=$(curl \
+       -H "Accept: application/vnd.github.v3+json" \
+       https://api.github.com/repos/mangeshpa/HelloWorldDotNet | jq -r '{Reponame: .name, Branch: .default_branch}'
+       
        #curl -X GET https://api.github.com/repos/mangeshpa/HelloWorldDotNet | jq -r '{Reponame: .name, Branch: .default_branch}'  >> "./output.json"
        #(curl https://api.github.com/repos/mangeshpa/Hell(oWorldDotNet/commits | jq '.[] | {Commit_id: .sha, Commit_Date: .commit.author.date, Commit_Author: .commit.author.name}' |  curl -X GET https://api.github.com/repos/mangeshpa/HelloWorldDotNet | jq -r '{Reponame: .name, Branch: .default_branch}')
        
